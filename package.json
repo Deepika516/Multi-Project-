@@ -23,12 +23,15 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "@nebular/auth": "^11.0.0",
     "@nebular/date-fns": "^11.0.0",
     "@nebular/eva-icons": "11.0.0",
     "@nebular/theme": "^11.0.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@types/lodash": "^4.14.194",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
     "eva-icons": "^1.1.3",
     "lodash": "^4.17.21",
     "ngx-logger": "^5.0.12",
@@ -36,16 +39,16 @@
     "ngx-webstorage-service": "^5.0.0",
     "prettier": "^2.8.7",
     "rxjs": "~7.8.0",
+    "ts-node": "^10.9.1",
     "tslib": "^2.3.0",
-    "zone.js": "~0.12.0",
-    "@nebular/auth": "^11.0.0",
-    "date-fns": "^2.29.3"
+    "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.6",
     "@angular/cli": "~15.2.6",
     "@angular/compiler-cli": "^15.2.0",
     "@schematics/angular": "~15.2.6",
+    "@types/date-fns": "^2.6.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
@@ -54,7 +57,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.2.2",
-    "@types/date-fns": "^2.6.0",
     "typescript": "~4.9.4"
   }
 }

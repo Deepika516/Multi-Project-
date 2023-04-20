@@ -12,7 +12,7 @@
       },
       "root": "projects/angular-boilerplate",
       "sourceRoot": "projects/angular-boilerplate/src",
-      "prefix": "app",
+      "prefix": "main-project",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -24,7 +24,7 @@
             "tsConfig": "projects/angular-boilerplate/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/angular-biolerplate/src/favicon.ico",
+              "projects/angular-boilerplate/src/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "projects/shared-library/src/lib/assets/",
@@ -35,7 +35,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/eva-icons/style/scss/eva-icons.scss",
               "node_modules/@nebular/theme/styles/prebuilt/dark.css",
-              "projects/angular-biolerplate/src/styles.scss"
+              "projects/angular-boilerplate/src/styles.scss"
             ],
             "scripts": []
           },
@@ -56,18 +56,44 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "fileReplacements": [
+                {
+                  "replace": "projects/angular-boilerplate/src/environments/environment.ts",
+                  "with": "projects/angular-boilerplate/src/environments/environment.ts"
+                }
+              ],
+              "index": {
+                "input": "projects/angular-boilerplate/src/index.html",
+                "output": "index.html"
+              },
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {	
+            "browserTarget": "angular-boilerplate:build"	
+          },
           "configurations": {
             "production": {
               "browserTarget": "angular-boilerplate:build:production"

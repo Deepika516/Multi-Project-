@@ -10,7 +10,6 @@ import { environment } from '@main-project/boiler/env/environment';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, ThemeModule, SharedModule],
-  providers: [{ provide: APP_CONFIG, useValue: environment }],
+  imports: [CommonModule, HomeRoutingModule, ThemeModule]
 })
 export class HomeModule {}
