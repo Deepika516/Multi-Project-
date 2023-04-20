@@ -1,5 +1,5 @@
-@use 'sass:map';
-@use '../../theme/styles/variables.scss' as *;
+@use "sass:map";
+@use "../../theme/styles/variables.scss" as *;
 
 :host {
   .logo {
@@ -27,15 +27,15 @@
   font-family: #{nb-theme(font-family-primary)};
   font-weight: 600;
   line-height: 1.5rem;
-  background-color: map.get($font, 'light');
-  border: 0.063rem solid map.get($color, 'border-disable');
+  background-color: map.get($font, "light");
+  border: 0.063rem solid map.get($color, "border-disable");
   position: absolute;
 
   &:hover {
-    border-color: map-get($font, 'placeholder');
+    border-color: map-get($font, "placeholder");
   }
 
   &:active {
-    border-color: map-get($font, 'primary');
+    border-color: map-get($font, "primary");
   }
 }

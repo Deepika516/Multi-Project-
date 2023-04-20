@@ -1,5 +1,5 @@
-@use 'sass:map';
-@import '../../../theme/styles/variables';
+@use "sass:map";
+@import "../../../theme/styles/variables";
 
 .select-panel {
   font-family: $main-font-family;
@@ -82,8 +82,8 @@
 
 .list-icon {
   display: inline-block;
-  background: map.get($color, 'menu-item-active');
-  color: map.get($font, 'primary');
+  background: map.get($color, "menu-item-active");
+  color: map.get($font, "primary");
   width: 2rem;
   height: 2rem !important;
   margin-right: 0.5rem;

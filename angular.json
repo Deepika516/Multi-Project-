@@ -20,17 +20,22 @@
             "outputPath": "dist/angular-boilerplate",
             "index": "projects/angular-boilerplate/src/index.html",
             "main": "projects/angular-boilerplate/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/angular-boilerplate/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/angular-boilerplate/src/favicon.ico",
-              "projects/angular-boilerplate/src/assets"
+              "projects/angular-biolerplate/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "projects/shared-library/src/lib/assets/",
+                "output": "projects/shared-library/src/lib/assets/"
+              }
             ],
             "styles": [
-              "projects/angular-boilerplate/src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/eva-icons/style/scss/eva-icons.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "projects/angular-biolerplate/src/styles.scss"
             ],
             "scripts": []
           },
@@ -82,19 +87,18 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/angular-boilerplate/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/angular-boilerplate/src/favicon.ico",
-              "projects/angular-boilerplate/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/shared-library/src/lib/assets/",
+                "output": "projects/shared-library/src/lib/assets/"
+              }
             ],
-            "styles": [
-              "projects/angular-boilerplate/src/styles.scss"
-            ],
+            "styles": ["projects/angular-boilerplate/src/styles.scss"],
             "scripts": []
           }
         }
@@ -117,18 +121,14 @@
             "outputPath": "dist/first-app",
             "index": "projects/first-app/src/index.html",
             "main": "projects/first-app/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/first-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/first-app/src/favicon.ico",
               "projects/first-app/src/assets"
             ],
-            "styles": [
-              "projects/first-app/src/styles.scss"
-            ],
+            "styles": ["projects/first-app/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -179,19 +179,14 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/first-app/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/first-app/src/favicon.ico",
               "projects/first-app/src/assets"
             ],
-            "styles": [
-              "projects/first-app/src/styles.scss"
-            ],
+            "styles": ["projects/first-app/src/styles.scss"],
             "scripts": []
           }
         }
@@ -222,10 +217,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/shared-library/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }

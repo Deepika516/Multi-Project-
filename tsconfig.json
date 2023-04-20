@@ -14,7 +14,9 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"],
     "paths": {
-      "@main-project/boiler/env/*": ["projects/angular-boilerplate/src/environments/*"],
+      "@main-project/boiler/env/*": [
+        "projects/angular-boilerplate/src/environments/*"
+      ],
       "@main-project/boiler/*": ["projects/angular-boilerplate/src/app/*"],
       "@main-project/core/*": ["projects/shared-library/src/lib/shared/core/*"],
       "@main-project/shared/*": ["projects/shared-library/src/lib/shared/*"],

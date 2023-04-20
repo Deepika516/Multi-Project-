@@ -1,0 +1,16 @@
+package.json
+yarm.lock
+dist
+.angular
+.vscode/*
+favicon.ico
+yarn.lock
+projects/shared-library/src/lib/assets/*
+.editorconfig
+.githooks/*
+.prettierignore
+.sonarcloud.properties
+browserslist
+.gitignore
+sonar-analysis.sh
+.prettier.rc
