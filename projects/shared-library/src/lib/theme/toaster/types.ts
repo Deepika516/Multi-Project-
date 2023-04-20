@@ -1,8 +1,8 @@
+import { ToasterConfig } from '@main-project/core/toaster';
 import {
   NbGlobalLogicalPosition,
   NbGlobalPhysicalPosition,
 } from '@nebular/theme';
-import {ToasterConfig} from '../../core/toaster/types';
 
 export class ToasterConfigExt extends ToasterConfig {
   override position!: NbGlobalLogicalPosition | NbGlobalPhysicalPosition;

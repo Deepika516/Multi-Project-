@@ -1,4 +1,4 @@
-import {required, validate} from '@boiler/core/decorators';
+import { required, validate } from '@main-project/core/decorators';
 
 @validate()
 export class NameIdRequired {

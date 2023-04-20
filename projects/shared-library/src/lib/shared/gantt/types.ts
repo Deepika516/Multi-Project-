@@ -1,9 +1,9 @@
-import {TemplateRef, Type, ViewContainerRef} from '@angular/core';
-import {AnyObject} from '@boiler/core/api/backend-filter';
-import {DIGITS, ONE_MIN} from '@boiler/core/constants';
-import {NbMenuItem} from '@nebular/theme';
-import {gantt} from 'dhtmlx-gantt';
-import {RANDOM_SIZE} from './const';
+import { TemplateRef, Type, ViewContainerRef } from '@angular/core';
+import { AnyObject } from '@boiler/core/api/backend-filter';
+import { DIGITS, ONE_MIN } from '@boiler/core/constants';
+import { NbMenuItem } from '@nebular/theme';
+import { gantt } from 'dhtmlx-gantt';
+import { RANDOM_SIZE } from './const';
 
 /**
  * `GanttTaskValue` is a type that represents a task in the Gantt chart.
@@ -52,7 +52,7 @@ export interface BaseTaskValue<T> {
 }
 
 export function withSuballocations<T>(
-  task: GanttTaskValueWithSubAllocation<T> | GanttTaskValueWithAllocation<T>,
+  task: GanttTaskValueWithSubAllocation<T> | GanttTaskValueWithAllocation<T>
 ): task is GanttTaskValueWithSubAllocation<T> {
   return (
     (task as GanttTaskValueWithSubAllocation<T>).subAllocations !== undefined
@@ -161,7 +161,7 @@ export abstract class GanttAdapter<T> {
   protected _addTimezoneOffset(date: string | Date) {
     let dateObject = new Date(date);
     return new Date(
-      dateObject.getTime() + dateObject.getTimezoneOffset() * ONE_MIN,
+      dateObject.getTime() + dateObject.getTimezoneOffset() * ONE_MIN
     );
   }
 
@@ -200,7 +200,7 @@ export type SubAllocation<T = AnyObject> = {
 export type ContextItemFilter<T> = (item: GanttTaskValue<T>) => NbMenuItem[];
 
 export function hasSubAllocation<T>(
-  item: GanttTaskValue<T>,
+  item: GanttTaskValue<T>
 ): item is GanttTaskValueWithSubAllocation<T> {
   return !!(item as GanttTaskValueWithSubAllocation<T>).subAllocations;
 }

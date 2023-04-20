@@ -37,7 +37,9 @@
     <nb-tag
       *ngFor="let item of visibleTags"
       [text]="asString(item && item[nameField])"
-      [ngStyle]="{maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'}"
+      [ngStyle]="{
+        maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'
+      }"
       [removable]="!disabled"
       (remove)="toggle(item); toggleDropdown()"
     ></nb-tag>
@@ -102,7 +104,7 @@
     [searchPlaceholder]="searchPlaceholder"
     [disabledField]="disabledField"
     [selectOnEnter]="selectOnEnter"
-    [ngStyle]="{height: dropdownHeight + 'px'}"
+    [ngStyle]="{ height: dropdownHeight + 'px' }"
     [groupConfig]="groupConfig"
     [showIcon]="showIcon"
   ></list>
@@ -143,7 +145,7 @@
     [multiple]="false"
     [search]="false"
     [removal]="currentPanel?.removal ?? false"
-    [ngStyle]="{height: (currentPanel?.height ?? 0) + 'px'}"
+    [ngStyle]="{ height: (currentPanel?.height ?? 0) + 'px' }"
     (closed)="closePanel()"
     [groupConfig]="groupConfig"
   ></list>

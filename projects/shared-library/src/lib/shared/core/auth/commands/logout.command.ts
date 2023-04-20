@@ -1,12 +1,11 @@
-import {IAdapter, IApiService, PostAPICommand} from '@boiler/core/api';
-import {environment} from '@boiler/env/environment';
+import { IAdapter, IApiService, PostAPICommand } from '../../api';
 
 export class LogoutCommand<T> extends PostAPICommand<T> {
-  constructor(apiService: IApiService, adapter: IAdapter<T>) {
+  constructor(apiService: IApiService, adapter: IAdapter<T>, appConfig: any) {
     super(
       apiService,
       adapter,
-      `${environment.baseApiUrl}${environment.authServiceUrl}/logout`,
+      `${appConfig.baseApiUrl}${appConfig.authServiceUrl}/logout`
     );
   }
 }

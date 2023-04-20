@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {AnyObject} from '@boiler/core/api/backend-filter';
-import {NbMenuItem} from '@nebular/theme';
-import {ContextItemFilter, GanttTaskValue} from '../../types';
+import { Component, Input } from '@angular/core';
+import { AnyObject } from '@boiler/core/api/backend-filter';
+import { NbMenuItem } from '@nebular/theme';
+import { ContextItemFilter, GanttTaskValue } from '../../types';
 
 @Component({
   selector: 'boiler-gantt-column',

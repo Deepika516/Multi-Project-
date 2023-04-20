@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {MAX_ALLOCATION} from '@boiler/core/constants';
-import {TranslateService} from '@ngx-translate/core';
-import {SubAllocation} from '../../types';
+import { Component } from '@angular/core';
+import { MAX_ALLOCATION } from '@boiler/core/constants';
+import { TranslateService } from '@ngx-translate/core';
+import { SubAllocation } from '../../types';
 
 @Component({
   selector: 'boiler-gantt-tooltip',

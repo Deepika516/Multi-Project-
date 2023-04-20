@@ -1,12 +1,11 @@
-import {IAdapter, IApiService, PatchAPICommand} from '@boiler/core/api';
-import {environment} from '@boiler/env/environment';
+import { IAdapter, IApiService, PatchAPICommand } from '../../api';
 
 export class ResetPasswordCommand<T> extends PatchAPICommand<T> {
-  constructor(apiService: IApiService, adapter: IAdapter<T>) {
+  constructor(apiService: IApiService, adapter: IAdapter<T>, appConfig: any) {
     super(
       apiService,
       adapter,
-      `${environment.baseApiUrl}${environment.authServiceUrl}/auth/reset-password`,
+      `${appConfig.baseApiUrl}${appConfig.authServiceUrl}/auth/reset-password`
     );
   }
 }

@@ -1,14 +1,13 @@
-import {Location} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
-import {environment} from '@boiler/env/environment';
-import {filter, map} from 'rxjs';
-
-import {ComponentBaseDirective} from './component-base';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { filter, map } from 'rxjs';
+import { ComponentBaseDirective } from './component-base';
 
 export class RouteComponentBaseDirective extends ComponentBaseDirective {
   constructor(
     protected readonly route: ActivatedRoute,
     protected readonly location: Location,
+    protected readonly appConfig: any
   ) {
     super();
   }
@@ -31,8 +30,8 @@ export class RouteComponentBaseDirective extends ComponentBaseDirective {
 
   getRouteParamObservable(key: string) {
     return this.route.paramMap.pipe(
-      filter(params => !!params.get(key)),
-      map(params => params.get(key)),
+      filter((params) => !!params.get(key)),
+      map((params) => params.get(key))
     );
   }
   getChildRouteParam(key: string) {
@@ -44,6 +43,6 @@ export class RouteComponentBaseDirective extends ComponentBaseDirective {
   }
 
   navigateHome(): void {
-    this.location.go(environment.homePath);
+    this.location.go(this.appConfig.homePath);
   }
 }

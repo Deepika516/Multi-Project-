@@ -1,5 +1,5 @@
-import {trigger} from '@angular/animations';
-import {DebugElement} from '@angular/core';
+import { trigger } from '@angular/animations';
+import { DebugElement } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -7,20 +7,20 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterTestingModule} from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import {DIGITS} from '@boiler/core/constants';
-import {ThemeModule} from '@boiler/theme/theme.module';
-import {TranslateService} from '@ngx-translate/core';
-import {finishVirtualScrollInit} from 'src/testing/virtual-scroll-init';
-import {AngularTranslationServiceStub} from '../../../../testing/translation-service-stub';
-import {SelectModule} from '../select.module';
-import {SelectTestComponent} from '../tests/select-test.component';
-import {SelectTestModule} from '../tests/select-test.module';
+import { DIGITS } from '@boiler/core/constants';
+import { ThemeModule } from '@boiler/theme/theme.module';
+import { TranslateService } from '@ngx-translate/core';
+import { finishVirtualScrollInit } from 'src/testing/virtual-scroll-init';
+import { AngularTranslationServiceStub } from '../../../../testing/translation-service-stub';
+import { SelectModule } from '../select.module';
+import { SelectTestComponent } from '../tests/select-test.component';
+import { SelectTestModule } from '../tests/select-test.module';
 
-import {SelectComponent} from './select.component';
+import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
   const items = [
@@ -61,7 +61,7 @@ describe('SelectComponent', () => {
       const list = debugElement.queryAll(By.css(listItem));
       expect(list).toHaveSize(DIGITS.THREE);
       const checkbox = debugElement.query(
-        By.css('.select-panel .list .item nb-checkbox'),
+        By.css('.select-panel .list .item nb-checkbox')
       );
       expect(checkbox).toBeNull();
       const search = debugElement.query(By.css(searchBar));
@@ -120,7 +120,7 @@ describe('SelectComponent', () => {
       const search = debugElement.query(By.css(searchBar));
       expect(search).toBeTruthy();
       expect(
-        document.activeElement?.classList.contains('search-input'),
+        document.activeElement?.classList.contains('search-input')
       ).toBeTrue();
     }));
 
@@ -160,7 +160,7 @@ describe('SelectComponent', () => {
       search.nativeElement.dispatchEvent(
         new KeyboardEvent('keyup', {
           key: 'Enter',
-        }),
+        })
       );
       fixture.detectChanges();
       flush();
@@ -182,11 +182,11 @@ describe('SelectComponent', () => {
       const list = debugElement.queryAll(By.css(listItem));
       expect(list).toHaveSize(DIGITS.THREE);
       const checkbox = debugElement.query(
-        By.css('.select-panel .list .item nb-checkbox'),
+        By.css('.select-panel .list .item nb-checkbox')
       );
       expect(checkbox).toBeTruthy();
       const search = debugElement.query(
-        By.css('.select-panel .list .item search'),
+        By.css('.select-panel .list .item search')
       );
       expect(search).toBeNull();
     }));
@@ -210,50 +210,42 @@ describe('SelectComponent', () => {
       expect(panel).toBeTruthy();
     }));
 
-    it(
-      'should show selected value through tags',
-      waitForAsync(async () => {
-        component.control.setValue([
-          items[1].id,
-          items[DIGITS.TWO].id,
-          items[0].id,
-        ]);
-        fixture.detectChanges();
-        const input = debugElement.queryAll(By.css('.select-container nb-tag'));
-        const extraCount = debugElement.query(
-          By.css('.select-container .count-box'),
-        );
-        expect(input).toHaveSize(1);
-        expect(extraCount.nativeElement.innerHTML).toEqual(' +2 ');
-        component.control.reset();
-        fixture.detectChanges();
-      }),
-    );
+    it('should show selected value through tags', waitForAsync(async () => {
+      component.control.setValue([
+        items[1].id,
+        items[DIGITS.TWO].id,
+        items[0].id,
+      ]);
+      fixture.detectChanges();
+      const input = debugElement.queryAll(By.css('.select-container nb-tag'));
+      const extraCount = debugElement.query(
+        By.css('.select-container .count-box')
+      );
+      expect(input).toHaveSize(1);
+      expect(extraCount.nativeElement.innerHTML).toEqual(' +2 ');
+      component.control.reset();
+      fixture.detectChanges();
+    }));
 
-    it(
-      'should clear value on cross click',
-      waitForAsync(async () => {
-        component.control.setValue([
-          items[1].id,
-          items[DIGITS.TWO].id,
-          items[0].id,
-        ]);
-        fixture.detectChanges();
-        const input = debugElement.queryAll(By.css('.select-container nb-tag'));
-        const extraCount = debugElement.query(
-          By.css('.select-container .count-box'),
-        );
-        expect(input).toHaveSize(1);
-        expect(extraCount.nativeElement.innerHTML).toEqual(' +2 ');
+    it('should clear value on cross click', waitForAsync(async () => {
+      component.control.setValue([
+        items[1].id,
+        items[DIGITS.TWO].id,
+        items[0].id,
+      ]);
+      fixture.detectChanges();
+      const input = debugElement.queryAll(By.css('.select-container nb-tag'));
+      const extraCount = debugElement.query(
+        By.css('.select-container .count-box')
+      );
+      expect(input).toHaveSize(1);
+      expect(extraCount.nativeElement.innerHTML).toEqual(' +2 ');
 
-        const cross = debugElement.query(
-          By.css('.select-container .close-icon'),
-        );
-        cross.nativeElement.click();
-        fixture.detectChanges();
-        expect(component.control.value).toEqual([]);
-      }),
-    );
+      const cross = debugElement.query(By.css('.select-container .close-icon'));
+      cross.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.control.value).toEqual([]);
+    }));
   });
 
   async function setupComponent() {

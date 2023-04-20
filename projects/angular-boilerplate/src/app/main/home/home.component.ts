@@ -1,9 +1,9 @@
-import {Location} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService, LoggedInUserDM} from '@boiler/core/auth';
-import {RouteComponentBaseDirective} from '@boiler/core/route-component-base';
-import {takeUntil} from 'rxjs';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService, LoggedInUserDM } from '@boiler/core/auth';
+import { RouteComponentBaseDirective } from '@boiler/core/route-component-base';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'boiler-home',
@@ -18,7 +18,7 @@ export class HomeComponent
     override readonly route: ActivatedRoute,
     override readonly location: Location,
     private readonly router: Router,
-    private readonly authService: AuthService,
+    private readonly authService: AuthService
   ) {
     super(route, location);
   }
@@ -30,7 +30,7 @@ export class HomeComponent
     this.authService
       .currentUser()
       .pipe(takeUntil(this._destroy$))
-      .subscribe(usr => {
+      .subscribe((usr) => {
         this.loggedInUserDM = usr;
         this.greeting = this.getGreetingText();
       });

@@ -1,12 +1,12 @@
-import {InjectionToken} from '@angular/core';
-import {Gantt} from 'dhtmlx-gantt/codebase/dhtmlxgantt';
-import {GanttService} from './services';
-import {GanttLib, GanttScaleService} from './types';
+import { InjectionToken } from '@angular/core';
+import { Gantt } from 'dhtmlx-gantt/codebase/dhtmlxgantt';
+import { GanttService } from './services';
+import { GanttLib, GanttScaleService } from './types';
 
 export const GANTT = new InjectionToken<GanttLib>('boiler.gantt.lib');
 
 export const GANTT_SCALES = new InjectionToken<GanttScaleService>(
-  'boiler.gantt.scales',
+  'boiler.gantt.scales'
 );
 
 export const GanttProviders = [

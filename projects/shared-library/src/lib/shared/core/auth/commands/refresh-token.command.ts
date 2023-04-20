@@ -1,12 +1,11 @@
-import {IAdapter, IApiService, PostAPICommand} from '@boiler/core/api';
-import {environment} from '@boiler/env/environment';
+import { IAdapter, IApiService, PostAPICommand } from '../../api';
 
 export class RefreshTokenCommand<T> extends PostAPICommand<T> {
-  constructor(apiService: IApiService, adapter: IAdapter<T>) {
+  constructor(apiService: IApiService, adapter: IAdapter<T>, appConfig: any) {
     super(
       apiService,
       adapter,
-      `${environment.baseApiUrl}${environment.authServiceUrl}/auth/token-refresh`,
+      `${appConfig.baseApiUrl}${appConfig.authServiceUrl}/auth/token-refresh`
     );
   }
 }

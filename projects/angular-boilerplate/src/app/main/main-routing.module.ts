@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from './main.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('./home/home.module').then(m => m.HomeModule),
+          import('./home/home.module').then((m) => m.HomeModule),
       },
     ],
   },

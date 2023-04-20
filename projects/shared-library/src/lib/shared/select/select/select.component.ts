@@ -1,5 +1,9 @@
-import {SelectionModel} from '@angular/cdk/collections';
-import {ConnectedPosition, Overlay, ViewportRuler} from '@angular/cdk/overlay';
+import { SelectionModel } from '@angular/cdk/collections';
+import {
+  ConnectedPosition,
+  Overlay,
+  ViewportRuler,
+} from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -15,14 +19,14 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ComponentBaseDirective} from '@boiler/core/component-base';
-import {DIGITS} from '@boiler/core/constants';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ComponentBaseDirective } from '@boiler/core/component-base';
+import { DIGITS } from '@boiler/core/constants';
 
-import {NbTagComponent} from '@nebular/theme';
-import {cloneDeep, isEqual} from 'lodash';
-import {takeUntil} from 'rxjs';
-import {dropdownAnimation, rotateAnimation} from '../animations';
+import { NbTagComponent } from '@nebular/theme';
+import { cloneDeep, isEqual } from 'lodash';
+import { takeUntil } from 'rxjs';
+import { dropdownAnimation, rotateAnimation } from '../animations';
 import {
   INPUT_MIN_WIDTH,
   ITEM_HEIGHT,
@@ -36,7 +40,7 @@ import {
   TAG_MARGIN,
   TAG_PADDING,
 } from '../constants';
-import {GroupConfig, Panel, ValueType} from '../types';
+import { GroupConfig, Panel, ValueType } from '../types';
 @Component({
   selector: 'select',
   templateUrl: './select.component.html',
@@ -52,17 +56,19 @@ import {GroupConfig, Panel, ValueType} from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent<
-  InputType,
-  MultipleMode extends boolean,
-  Value extends InputType[IdField],
-  IdField extends keyof InputType
-> extends ComponentBaseDirective
-  implements ControlValueAccessor, OnInit, OnChanges {
+    InputType,
+    MultipleMode extends boolean,
+    Value extends InputType[IdField],
+    IdField extends keyof InputType
+  >
+  extends ComponentBaseDirective
+  implements ControlValueAccessor, OnInit, OnChanges
+{
   constructor(
     public overlay: Overlay,
     public elementRef: ElementRef,
     protected _viewportRuler: ViewportRuler,
-    private _cdr: ChangeDetectorRef,
+    private _cdr: ChangeDetectorRef
   ) {
     super();
     this.panels = cloneDeep(panelConfigs);
@@ -397,13 +403,13 @@ export class SelectComponent<
    * @param {string} value - string - the value of the input field
    */
   updateAutocompleteOptions(value: string) {
-    let showAddOption = !this.selectedItems.selected.some(item =>
-      isEqual(item[this.nameField], value),
+    let showAddOption = !this.selectedItems.selected.some((item) =>
+      isEqual(item[this.nameField], value)
     );
     this.panels[PanelType.Autocomplete].list = [];
     if (value) {
       this.panels[PanelType.Autocomplete].list =
-        this.options?.filter(item => {
+        this.options?.filter((item) => {
           if (this.asString(item[this.nameField]) === value) {
             showAddOption = false;
           }
@@ -417,10 +423,10 @@ export class SelectComponent<
         }) ?? [];
     }
     if (showAddOption && value.length) {
-      this.panels[PanelType.Autocomplete].list.push(({
+      this.panels[PanelType.Autocomplete].list.push({
         [this.idField]: PLACEHOLDER_ITEM,
         [this.nameField]: value,
-      } as unknown) as InputType);
+      } as unknown as InputType);
     }
     if (this.panels[PanelType.Autocomplete].list.length) {
       this.openPanel(PanelType.Autocomplete);
@@ -438,7 +444,7 @@ export class SelectComponent<
     input.value = '';
     if (this.panels[PanelType.Autocomplete].list[0]) {
       this.handleAutocompleteSelect(
-        this.panels[PanelType.Autocomplete].list[0],
+        this.panels[PanelType.Autocomplete].list[0]
       );
       this.closePanel();
     }
@@ -485,11 +491,11 @@ export class SelectComponent<
   emitNewValue() {
     if (this.multiple === true) {
       this.valueChange.emit(
-        this.selections.selected as ValueType<MultipleMode, Value>,
+        this.selections.selected as ValueType<MultipleMode, Value>
       );
     } else {
       this.valueChange.emit(
-        this.selections.selected[0] as ValueType<MultipleMode, Value>,
+        this.selections.selected[0] as ValueType<MultipleMode, Value>
       );
     }
   }
@@ -550,7 +556,7 @@ export class SelectComponent<
    * @returns The item as a string.
    */
   asString<T>(item: T) {
-    return (item as unknown) as string;
+    return item as unknown as string;
   }
 
   /**
@@ -617,15 +623,15 @@ export class SelectComponent<
     this.selectedItems.clear();
     const ids = this.selections.selected;
     if (this.multiple) {
-      const items = this.options?.filter(item =>
-        ids.includes(item[this.idField] as Value),
+      const items = this.options?.filter((item) =>
+        ids.includes(item[this.idField] as Value)
       );
       if (items?.length) {
         this.selectedItems.select(...items);
       }
     } else {
       const item = this.options?.find(
-        item => item[this.idField] === ids[0],
+        (item) => item[this.idField] === ids[0]
       ) as InputType;
       if (item) {
         this.selectedItems.select(item);
@@ -654,9 +660,8 @@ export class SelectComponent<
    * It updates the width of the panel overlay element.
    */
   private _panelWidth(type: PanelType) {
-    this.panels[
-      type
-    ].width = this.elementRef.nativeElement.getBoundingClientRect().width;
+    this.panels[type].width =
+      this.elementRef.nativeElement.getBoundingClientRect().width;
     this._cdr.detectChanges();
   }
 

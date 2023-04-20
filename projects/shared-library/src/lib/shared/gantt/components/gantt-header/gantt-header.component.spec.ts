@@ -1,8 +1,8 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ThemeModule} from '@boiler/theme/theme.module';
-import {GanttModule} from '../../gantt.module';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ThemeModule } from '@boiler/theme/theme.module';
+import { GanttModule } from '../../gantt.module';
 
-import {GanttHeaderComponent} from './gantt-header.component';
+import { GanttHeaderComponent } from './gantt-header.component';
 
 describe('GanttHeaderComponent', () => {
   let component: GanttHeaderComponent;

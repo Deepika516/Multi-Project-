@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {AnyObject} from '@boiler/core/api/backend-filter';
-import {MAX_ALLOCATION} from '@boiler/core/constants';
-import {TranslationService} from '@boiler/core/localization';
-import {TranslateService} from '@ngx-translate/core';
+import { Component } from '@angular/core';
+import { AnyObject } from '@boiler/core/api/backend-filter';
+import { MAX_ALLOCATION } from '@boiler/core/constants';
+import { TranslationService } from '@boiler/core/localization';
+import { TranslateService } from '@ngx-translate/core';
 import {
   GanttTaskValue,
   GanttTaskValueWithSubAllocation,
@@ -34,7 +34,7 @@ export class GanttBarsComponent<T extends AnyObject> {
   }
 
   hasSubAllocation(
-    item: GanttTaskValue<T>,
+    item: GanttTaskValue<T>
   ): item is GanttTaskValueWithSubAllocation<T> {
     return !!(item as GanttTaskValueWithSubAllocation<T>).subAllocations;
   }

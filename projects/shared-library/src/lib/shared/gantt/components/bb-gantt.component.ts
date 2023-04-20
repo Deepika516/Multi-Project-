@@ -13,12 +13,12 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {AnyObject} from '@boiler/core/api/backend-filter';
-import {ComponentBaseDirective} from '@boiler/core/component-base';
-import {NbMenuItem, NbMenuService} from '@nebular/theme';
-import {takeUntil} from 'rxjs';
-import {GANTT_COLUMN_WIDTH} from '../const';
-import {GanttService} from '../services';
+import { AnyObject } from '@boiler/core/api/backend-filter';
+import { ComponentBaseDirective } from '@boiler/core/component-base';
+import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { takeUntil } from 'rxjs';
+import { GANTT_COLUMN_WIDTH } from '../const';
+import { GanttService } from '../services';
 import {
   ContextItemClickEvent,
   ContextItemFilter,
@@ -29,8 +29,8 @@ import {
   IColumnComponent,
   Timelines,
 } from '../types';
-import {GanttBarsComponent} from './gantt-bars/gantt-bars.component';
-import {GanttColumnComponent} from './gantt-column/gantt-column.component';
+import { GanttBarsComponent } from './gantt-bars/gantt-bars.component';
+import { GanttColumnComponent } from './gantt-column/gantt-column.component';
 
 @Component({
   selector: 'boiler-gantt',
@@ -41,7 +41,7 @@ export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
   extends ComponentBaseDirective
   implements OnChanges, OnInit, AfterViewInit, OnDestroy, GanttRenderOptions<T>
 {
-  @ViewChild('gantt', {static: true}) ganttContainer!: ElementRef;
+  @ViewChild('gantt', { static: true }) ganttContainer!: ElementRef;
 
   @Input()
   data!: T[];
@@ -64,7 +64,7 @@ export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
   @Input()
   showChildInitials = false;
 
-  @ViewChild('menu', {static: true})
+  @ViewChild('menu', { static: true })
   contextTemplate!: TemplateRef<AnyObject>;
 
   @Input()
@@ -121,7 +121,7 @@ export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
   constructor(
     private readonly ganttSvc: GanttService<T, S>,
     private readonly menuService: NbMenuService,
-    public readonly viewContainerRef: ViewContainerRef,
+    public readonly viewContainerRef: ViewContainerRef
   ) {
     super();
   }
@@ -130,14 +130,14 @@ export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
     this.menuService
       .onItemClick()
       .pipe(takeUntil(this._destroy$))
-      .subscribe(event => {
+      .subscribe((event) => {
         this.contextItemClick.emit({
           event: event.item,
           task: event.tag as unknown as GanttTaskValue<T>,
         });
         this.ganttSvc.closeContextMenu();
       });
-    this.ganttSvc.events.pipe(takeUntil(this._destroy$)).subscribe(event => {
+    this.ganttSvc.events.pipe(takeUntil(this._destroy$)).subscribe((event) => {
       this.event.emit(event);
     });
   }

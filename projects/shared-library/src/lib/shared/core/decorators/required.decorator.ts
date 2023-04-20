@@ -1,4 +1,4 @@
-import {AnyObject} from '@boiler/core/api/backend-filter';
+import { AnyObject } from '@boiler/core/api/backend-filter';
 import 'reflect-metadata';
 
 export const requiredMetadataKey = Symbol('required');
@@ -15,7 +15,7 @@ export function required<T extends Object = AnyObject>() {
     Reflect.defineMetadata(
       requiredMetadataKey,
       requiredProps,
-      target.constructor,
+      target.constructor
     );
   };
 }

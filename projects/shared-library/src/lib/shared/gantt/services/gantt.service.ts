@@ -4,7 +4,7 @@ import {
   OverlayPositionBuilder,
   OverlayRef,
 } from '@angular/cdk/overlay';
-import {ComponentPortal, TemplatePortal} from '@angular/cdk/portal';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ComponentFactoryResolver,
   ElementRef,
@@ -13,11 +13,11 @@ import {
   Injector,
   Type,
 } from '@angular/core';
-import {AnyObject} from '@boiler/core/api/backend-filter';
-import {GanttEventName} from 'dhtmlx-gantt/codebase/dhtmlxgantt';
-import {debounceTime, fromEventPattern, Subject} from 'rxjs';
-import {GanttHeaderComponent} from '../components/gantt-header/gantt-header.component';
-import {GanttTooltipComponent} from '../components/gantt-tooltip/gantt-tooltip.component';
+import { AnyObject } from '@boiler/core/api/backend-filter';
+import { GanttEventName } from 'dhtmlx-gantt/codebase/dhtmlxgantt';
+import { debounceTime, fromEventPattern, Subject } from 'rxjs';
+import { GanttHeaderComponent } from '../components/gantt-header/gantt-header.component';
+import { GanttTooltipComponent } from '../components/gantt-tooltip/gantt-tooltip.component';
 import {
   BUFFER_FOR_TODAY,
   GANTT,
@@ -30,7 +30,7 @@ import {
   isHTMLELement,
   RESIZER_WIDTH,
 } from '../const';
-import {GanttEventTypes} from '../enum';
+import { GanttEventTypes } from '../enum';
 import {
   GanttAdapter,
   GanttEvent,
@@ -67,7 +67,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
     private overlay: Overlay,
-    private overlayPositionBuilder: OverlayPositionBuilder,
+    private overlayPositionBuilder: OverlayPositionBuilder
   ) {}
 
   /**
@@ -80,9 +80,9 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
   render(container: ElementRef, options: GanttRenderOptions<T>) {
     this._setColumnHeaders(options);
     this.gantt.templates.task_text = (start, end, task) =>
-      this._renderComponent(options.barComponent, {item: task});
-    this.gantt.templates.grid_open = task => '';
-    this.gantt.templates.grid_folder = task => '';
+      this._renderComponent(options.barComponent, { item: task });
+    this.gantt.templates.grid_open = (task) => '';
+    this.gantt.templates.grid_folder = (task) => '';
 
     this._moveToToday = options.moveToToday;
     this._highlightRange = options.highlightRange;
@@ -112,7 +112,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
               scrollY: 'scrollVer',
               minWidth: GANTT_TIMELINE_MIN_WIDTH,
             },
-            {view: 'scrollbar', scroll: 'y', id: 'scrollVer'},
+            { view: 'scrollbar', scroll: 'y', id: 'scrollVer' },
           ],
         },
         {
@@ -143,8 +143,8 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
         (id, e) => {
           this._eventHandler(id, e, options);
         },
-        {},
-      ),
+        {}
+      )
     );
     this._eventHandlers.push(
       this.gantt.attachEvent(
@@ -152,8 +152,8 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
         (id, e) => {
           this._eventHandler(id, e, options);
         },
-        {},
-      ),
+        {}
+      )
     );
 
     const hoverObservable =
@@ -175,15 +175,15 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
             today.setDate(today.getDate() + BUFFER_FOR_TODAY);
             // as per requirement, need to always show current date in gantt
             this.gantt.config.start_date = new Date(
-              Math.min(range.start_date.getTime(), today.getTime()),
+              Math.min(range.start_date.getTime(), today.getTime())
             );
             this.gantt.config.end_date = new Date(
-              Math.max(range.end_date.getTime(), today.getTime()),
+              Math.max(range.end_date.getTime(), today.getTime())
             );
           }
         },
-        {},
-      ),
+        {}
+      )
     );
     this.gantt.init(container.nativeElement);
 
@@ -207,7 +207,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
    * @param [render=true] - boolean - whether to render the gantt chart after the scale is set.
    */
   setScale(type: Timelines, options?: GanttScaleOptions, render = true) {
-    const scale = this.scales.find(s => s.scale === type);
+    const scale = this.scales.find((s) => s.scale === type);
     if (scale) {
       this.gantt.config.scales = scale.config(options);
     }
@@ -315,7 +315,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
   private _eventHandler(
     id: number,
     event: MouseEvent,
-    options: GanttRenderOptions<T>,
+    options: GanttRenderOptions<T>
   ) {
     if (event.target && isHTMLELement(event.target)) {
       const target = event.target.closest('[data-gantt-click]');
@@ -351,11 +351,11 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
 
   private _renderComponent<T extends AnyObject>(
     c: Type<T>,
-    inputs: Partial<{[key in keyof T]: T[keyof T]}>,
+    inputs: Partial<{ [key in keyof T]: T[keyof T] }>
   ) {
     const factory = this.resolver.resolveComponentFactory(c);
     const component = factory.create(this.injector);
-    Object.keys(inputs).forEach(key => {
+    Object.keys(inputs).forEach((key) => {
       const value = inputs[key];
       if (value !== undefined) {
         component.instance[key as keyof T] = value;
@@ -368,7 +368,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
   private _handleKebabClick(
     id: number,
     e: MouseEvent,
-    options: GanttRenderOptions<T>,
+    options: GanttRenderOptions<T>
   ) {
     const positionStrategy = this.overlay
       .position()
@@ -385,13 +385,13 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     const overlay = this.overlay.create(configs);
 
     if (options.contextTemplate && options.viewContainerRef) {
-      const item = this._data.find(d => d.id === id);
+      const item = this._data.find((d) => d.id === id);
       overlay.attach(
         new TemplatePortal(options.contextTemplate, options.viewContainerRef, {
           item,
           contextItems:
             (item && options.contextItemFilter?.(item)) ?? options.contextItems,
-        }),
+        })
       );
     }
     overlay.backdropClick().subscribe(() => {
@@ -402,7 +402,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
 
   private _hoverEventHandler(
     event: MouseEvent,
-    options: GanttRenderOptions<T>,
+    options: GanttRenderOptions<T>
   ) {
     if (event.target && isHTMLELement(event.target) && options.showTooltip) {
       const target = event.target.closest('[gantt-hover]');
@@ -456,7 +456,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     const attributeHover = target.getAttribute(tag);
     if (attributeHover && tag === 'gantt-bar-data') {
       const tooltipRef = this._tooltipOverlay.attach(
-        new ComponentPortal(GanttTooltipComponent),
+        new ComponentPortal(GanttTooltipComponent)
       );
       tooltipRef.instance.item = JSON.parse(attributeHover);
       this._overlays.push(this._tooltipOverlay);
@@ -464,15 +464,15 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
   }
 
   convertToObservable<T>(eventName: GanttEventName) {
-    return fromEventPattern<T>(handler => {
+    return fromEventPattern<T>((handler) => {
       this._eventHandlers.push(
         this.gantt.attachEvent(
           eventName,
           (id, e) => {
             handler(id, e);
           },
-          {},
-        ),
+          {}
+        )
       );
     });
   }

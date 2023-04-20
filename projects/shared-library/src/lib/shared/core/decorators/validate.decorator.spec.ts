@@ -1,5 +1,5 @@
-import {required} from './required.decorator';
-import {validate} from './validate.decorator';
+import { required } from './required.decorator';
+import { validate } from './validate.decorator';
 
 @validate()
 class MockModel {
@@ -79,9 +79,7 @@ describe('@validate', () => {
       new MockModelNotParamerterized();
       // sonarignore:end
     }).toThrow(
-      new Error(
-        `Can only use validate decorator with paramterized constructor`,
-      ),
+      new Error(`Can only use validate decorator with paramterized constructor`)
     );
   });
 });

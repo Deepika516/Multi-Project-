@@ -1,8 +1,8 @@
-import {TestBed} from '@angular/core/testing';
-import {LoggerTestingModule} from 'ngx-logger/testing';
-import {CoreModule} from '../core.module';
+import { TestBed } from '@angular/core/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
+import { CoreModule } from '../core.module';
 
-import {EnvResolverService} from './env-resolver.service';
+import { EnvResolverService } from './env-resolver.service';
 
 describe('EnvResolverService', () => {
   let service: EnvResolverService;

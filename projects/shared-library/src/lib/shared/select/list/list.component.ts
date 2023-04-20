@@ -1,5 +1,5 @@
-import {SelectionModel} from '@angular/cdk/collections';
-import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
+import { SelectionModel } from '@angular/cdk/collections';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,9 +14,9 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {UntypedFormControl} from '@angular/forms';
-import {ITEM_HEIGHT, PLACEHOLDER_ITEM} from '../constants';
-import {GroupConfig} from '../types';
+import { UntypedFormControl } from '@angular/forms';
+import { ITEM_HEIGHT, PLACEHOLDER_ITEM } from '../constants';
+import { GroupConfig } from '../types';
 
 @Component({
   selector: 'list',
@@ -29,7 +29,8 @@ export class ListComponent<
   MultipleMode extends boolean,
   Value extends InputType[IdField],
   IdField extends keyof InputType
-> implements OnInit, AfterViewInit, OnChanges {
+> implements OnInit, AfterViewInit, OnChanges
+{
   constructor(private _cdr: ChangeDetectorRef) {}
   /**
    * The list of items to display.
@@ -152,12 +153,12 @@ export class ListComponent<
     this.visibleList = Object.assign([], this.options);
     this.sortByGroups();
     this.searchControl = new UntypedFormControl();
-    this.searchControl.valueChanges.subscribe(value => {
+    this.searchControl.valueChanges.subscribe((value) => {
       this.visibleList =
         this.options?.filter(
-          item =>
+          (item) =>
             !value ||
-            this.getName(item).toLowerCase().includes(value.toLowerCase()),
+            this.getName(item).toLowerCase().includes(value.toLowerCase())
         ) ?? [];
       this.sortByGroups();
     });
@@ -196,7 +197,7 @@ export class ListComponent<
    * @returns The name of the item.
    */
   getName(item: InputType) {
-    return (item[this.nameField] as unknown) as string;
+    return item[this.nameField] as unknown as string;
   }
 
   /**
@@ -207,7 +208,7 @@ export class ListComponent<
     this.removed.add(item);
     this.remove.emit(item);
     this.visibleList =
-      this.options?.filter(item => !this.removed.has(item)) ?? [];
+      this.options?.filter((item) => !this.removed.has(item)) ?? [];
     if (this.visibleList.length) {
       this.viewport?.checkViewportSize();
     } else {
@@ -243,18 +244,18 @@ export class ListComponent<
   sortByGroups() {
     if (this.groupConfig && this.groupConfig.length) {
       let groupedData: InputType[][] = this.groupConfig.map(() => []);
-      this.visibleList?.forEach(option => {
+      this.visibleList?.forEach((option) => {
         const group = this.groupConfig!.findIndex(
-          group =>
+          (group) =>
             (group.value === '*' && option[group.fieldName]) ||
-            option[group.fieldName] === group.value,
+            option[group.fieldName] === group.value
         );
         if (group !== -1) groupedData[group].push(option);
       });
       this.groupIndexMap = this.groupConfig.reduce(
         (acc, obj, index) =>
-          obj.groupName ? {...acc, [index]: obj.groupName} : acc,
-        {},
+          obj.groupName ? { ...acc, [index]: obj.groupName } : acc,
+        {}
       );
       this.visibleList = groupedData.flat();
     }

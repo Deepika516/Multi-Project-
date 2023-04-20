@@ -6,4 +6,5 @@ export const environment = {
   baseApiUrl: '',
   authServiceUrl: '',
   userServiceUrl: '',
+  logLevel: 0,
 };

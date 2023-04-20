@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {UntypedFormControl} from '@angular/forms';
-import {NameIdRequired} from '@boiler/core/api';
+import { Component } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
+import { NameIdRequired } from '@boiler/core/api';
 
 @Component({
   selector: 'select-test',

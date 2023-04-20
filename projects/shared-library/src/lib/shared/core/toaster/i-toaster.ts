@@ -1,6 +1,6 @@
 // sonarignore:file
-import {IAnyObject} from '../i-any-object';
-import {ToasterConfig} from './types';
+import { IAnyObject } from '../i-any-object';
+import { ToasterConfig } from './types';
 
 export interface IToaster {
   /**
@@ -9,7 +9,7 @@ export interface IToaster {
   show(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfig>,
+    config?: Partial<ToasterConfig>
   ): IAnyObject;
   /**
    * Shows success toast with message, title and user config.
@@ -17,7 +17,7 @@ export interface IToaster {
   success(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfig>,
+    config?: Partial<ToasterConfig>
   ): IAnyObject;
   /**
    * Shows info toast with message, title and user config.
@@ -33,7 +33,7 @@ export interface IToaster {
   default(
     message: any,
     title?: any,
-    config?: Partial<ToasterConfig>,
+    config?: Partial<ToasterConfig>
   ): IAnyObject;
   /**
    * Shows danger toast with message, title and user config.

@@ -1,5 +1,3 @@
-import {PermissionKey} from '@boiler/shared/enums';
-
 export interface AnyObject {
   [property: string]: any;
 }

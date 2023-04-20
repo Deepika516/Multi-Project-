@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface IApiService {
   get(url: string, options?: object): Observable<any>;

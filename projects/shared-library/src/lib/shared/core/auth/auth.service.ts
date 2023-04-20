@@ -1,11 +1,9 @@
-import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {AnyAdapter, ApiService} from '@boiler/core/api';
-import {AuthTokenSkipHeader, ErrToastSkipHeader} from '@boiler/core/constants';
-import {UserSessionStoreService} from '@boiler/core/store';
-import {environment} from '@boiler/env/environment';
-import {NgxPermissionsService} from 'ngx-permissions';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthTokenSkipHeader, ErrToastSkipHeader } from '../constants';
+import { UserSessionStoreService } from '../store';
+import { NgxPermissionsService } from 'ngx-permissions';
 import {
   catchError,
   from,
@@ -18,8 +16,8 @@ import {
   throwError,
 } from 'rxjs';
 
-import {LoggedInUserAdapterService, LoginAdapterService} from './adapters';
-import {CoreAuthModule} from './auth.module';
+import { LoggedInUserAdapterService, LoginAdapterService } from './adapters';
+import { CoreAuthModule } from './auth.module';
 import {
   ForgetPasswordCommand,
   GetCurrentUserCommand,
@@ -30,7 +28,9 @@ import {
   ResetPasswordCommand,
   VerifyResetPasswordLinkCommand,
 } from './commands';
-import {LoggedInUserDM, LoginModel} from './models';
+import { LoggedInUserDM, LoginModel } from './models';
+import { AnyAdapter, ApiService } from '../api';
+import { APP_CONFIG } from '@main-project/app-config/';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -38,11 +38,11 @@ import {LoggedInUserDM, LoginModel} from './models';
 export class AuthService {
   private readonly authTokenSkipHeader = new HttpHeaders().set(
     AuthTokenSkipHeader,
-    '',
+    ''
   );
   private readonly errorToastSkipHeader = new HttpHeaders().set(
     ErrToastSkipHeader,
-    '',
+    ''
   );
   constructor(
     private readonly router: Router,
@@ -52,17 +52,18 @@ export class AuthService {
     private readonly loginAdapter: LoginAdapterService,
     private readonly anyAdapter: AnyAdapter,
     private readonly permissionsService: NgxPermissionsService,
+    @Inject(APP_CONFIG) private readonly appConfig: any
   ) {}
 
   public isLoggedIn(): Observable<boolean> {
     return this.currentUser().pipe(
-      switchMap(user => {
+      switchMap((user) => {
         if (user && user.id && this.store.getAccessToken()) {
           return of(true);
         } else {
           return of(false);
         }
-      }),
+      })
     );
   }
 
@@ -75,12 +76,16 @@ export class AuthService {
       return throwError(() => new Error('No token available'));
     } else {
       const command: GetCurrentUserCommand<LoggedInUserDM> =
-        new GetCurrentUserCommand(this.apiService, this.currentUserAdapter);
+        new GetCurrentUserCommand(
+          this.apiService,
+          this.currentUserAdapter,
+          this.appConfig
+        );
       return command.execute().pipe(
-        tap(res => {
+        tap((res) => {
           this.store.setUser(res);
           this._loadPermissions(res.permissions);
-        }),
+        })
       );
     }
   }
@@ -90,13 +95,14 @@ export class AuthService {
     const command: ForgetPasswordCommand<any> = new ForgetPasswordCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig
     );
     // sonarignore:end
     command.parameters = {
       data: {
         username: email.toLowerCase(),
-        client_id: environment.clientId,
-        client_secret: environment.publicKey,
+        client_id: this.appConfig.clientId,
+        client_secret: this.appConfig.publicKey,
       },
       observe: 'response',
       headers: this.authTokenSkipHeader,
@@ -107,12 +113,16 @@ export class AuthService {
   // sonarignore:start
   public verifyResetPasswordLink(token: string): Observable<any> {
     const command: VerifyResetPasswordLinkCommand<any> =
-      new VerifyResetPasswordLinkCommand(this.apiService, this.anyAdapter);
+      new VerifyResetPasswordLinkCommand(
+        this.apiService,
+        this.anyAdapter,
+        this.appConfig
+      );
     // sonarignore:end
     command.parameters = {
       data: {
         token: token,
-        client_id: environment.clientId,
+        client_id: this.appConfig.clientId,
       },
       observe: 'response',
       headers: this.authTokenSkipHeader,
@@ -125,14 +135,15 @@ export class AuthService {
     const command: ResetPasswordCommand<any> = new ResetPasswordCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig
     );
     // sonarignore:end
     command.parameters = {
       data: {
         token,
         password,
-        client_id: environment.clientId,
-        client_secret: environment.publicKey,
+        client_id: this.appConfig.clientId,
+        client_secret: this.appConfig.publicKey,
       },
       observe: 'response',
       headers: this.authTokenSkipHeader,
@@ -149,13 +160,14 @@ export class AuthService {
     const command: LoginCommand<LoginModel> = new LoginCommand(
       this.apiService,
       this.loginAdapter,
+      this.appConfig
     );
     command.parameters = {
       data: {
         username: username.toLowerCase(),
         password,
-        clientId: environment.clientId,
-        clientSecret: environment.publicKey,
+        clientId: this.appConfig.clientId,
+        clientSecret: this.appConfig.publicKey,
       },
       observe: 'response',
       headers: this.authTokenSkipHeader,
@@ -166,19 +178,19 @@ export class AuthService {
   loginViaGoogle(): void {
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = `${environment.baseApiUrl}${environment.authServiceUrl}/auth/google`;
+    form.action = `${this.appConfig.baseApiUrl}${this.appConfig.authServiceUrl}/auth/google`;
     form.style.display = 'none';
 
     const clientId = document.createElement('input');
     clientId.type = 'hidden';
     clientId.name = 'client_id';
-    clientId.value = environment.clientId;
+    clientId.value = this.appConfig.clientId;
     form.appendChild(clientId);
 
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'client_secret';
-    clientSecret.value = environment.publicKey;
+    clientSecret.value = this.appConfig.publicKey;
     form.appendChild(clientSecret);
     document.body.appendChild(form);
     form.submit();
@@ -192,19 +204,20 @@ export class AuthService {
     const command: GetTokenCommand<any> = new GetTokenCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig
     );
     // sonarignore:end
     command.parameters = {
       data: {
-        clientId: environment.clientId,
+        clientId: this.appConfig.clientId,
         code: secret,
       },
       headers: this.authTokenSkipHeader,
     };
     return command.execute().pipe(
-      map(response => {
+      map((response) => {
         const redirectTo =
-          this.store.getLastAccessedUrl() ?? environment.homePath;
+          this.store.getLastAccessedUrl() ?? this.appConfig.homePath;
         if (response.accessToken && response.refreshToken) {
           this.store.saveAccessToken(response.accessToken);
           this.store.saveRefreshToken(response.refreshToken);
@@ -213,7 +226,7 @@ export class AuthService {
           return true;
         }
         return false;
-      }),
+      })
     );
   }
 
@@ -228,6 +241,7 @@ export class AuthService {
     const command: RefreshTokenCommand<any> = new RefreshTokenCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig
     );
     // sonarignore:end
     command.parameters = {
@@ -240,7 +254,7 @@ export class AuthService {
       .execute()
       .pipe(
         tap({
-          next: response => {
+          next: (response) => {
             if (response.accessToken && response.refreshToken) {
               this.store.clearAll();
               this.store.saveAccessToken(response.accessToken);
@@ -253,7 +267,7 @@ export class AuthService {
           error: () => {
             this.clearAllData();
           },
-        }),
+        })
       )
       .pipe(catchError(this.handleError));
   }
@@ -267,6 +281,7 @@ export class AuthService {
     const command: LogoutCommand<unknown> = new LogoutCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig
     );
     command.parameters = {
       data: {
@@ -278,7 +293,7 @@ export class AuthService {
       map(() => {
         this.clearAllData();
         return true;
-      }),
+      })
     );
   }
 
@@ -303,11 +318,11 @@ export class AuthService {
     if (user && user.id) {
       this._checkIfPermissionsAlreadyExists(user.permissions)
         .pipe(
-          tap(exists => {
+          tap((exists) => {
             if (!exists) {
               this._loadPermissions(user.permissions);
             }
-          }),
+          })
         )
         .pipe(take(1))
         .subscribe();
@@ -328,7 +343,7 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse) {
     return throwError(
-      () => new Error('Something bad happened; please try again later.'),
+      () => new Error('Something bad happened; please try again later.')
     );
   }
 }
