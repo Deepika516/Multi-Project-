@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { environment } from '@boiler/env/environment';
+import { environment } from '@main-project/boiler/env/environment.prod';
 import { NGXLogger } from 'ngx-logger';
 import { map, Observable, take } from 'rxjs';
 import { CoreModule } from '../core.module';

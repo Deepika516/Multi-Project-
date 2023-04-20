@@ -1,4 +1,4 @@
-import { AnyObject } from '@boiler/core/api/backend-filter';
+import { AnyObject } from '../api';
 import 'reflect-metadata';
 
 export const requiredMetadataKey = Symbol('required');
