@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, LoggedInUserDM } from '@boiler/core/auth';
-import { RouteComponentBaseDirective } from '@boiler/core/route-component-base';
+import { APP_CONFIG } from '@main-project/app-config/';
+import { AuthService, LoggedInUserDM } from '@main-project/core/auth';
+import { RouteComponentBaseDirective } from '@main-project/core/route-component-base';
 import { takeUntil } from 'rxjs';
 
 @Component({
@@ -19,8 +20,9 @@ export class HomeComponent
     override readonly location: Location,
     private readonly router: Router,
     private readonly authService: AuthService
+    @Inject(APP_CONFIG) override readonly appConfig: any
   ) {
-    super(route, location);
+    super(route, location, appConfig);
   }
 
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
