@@ -30,7 +30,7 @@ import {
 } from './commands';
 import { LoggedInUserDM, LoginModel } from './models';
 import { AnyAdapter, ApiService } from '../api';
-import { APP_CONFIG } from '@main-project/app-config/';
+import { APP_CONFIG } from '@main-project/app-config';
 
 @Injectable({
   providedIn: CoreAuthModule,

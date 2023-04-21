@@ -3,7 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../shared/core/auth';
 import { RouteComponentBaseDirective } from '../../shared/core';
-import { APP_CONFIG } from '@main-project/app-config/';
+import { APP_CONFIG } from '@main-project/app-config';
 
 @Component({
   selector: 'boiler-login',

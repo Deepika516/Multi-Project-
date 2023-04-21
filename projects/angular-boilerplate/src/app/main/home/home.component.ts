@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { APP_CONFIG } from '@main-project/app-config/';
+import { APP_CONFIG } from '@main-project/app-config';
 import { AuthService, LoggedInUserDM } from '@main-project/core/auth';
 import { RouteComponentBaseDirective } from '@main-project/core/route-component-base';
 import { takeUntil } from 'rxjs';

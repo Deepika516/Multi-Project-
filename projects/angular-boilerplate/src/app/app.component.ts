@@ -4,7 +4,7 @@ import { TranslationService } from 'projects/shared-library/src/lib/shared/core'
 import { IconPacksManagerService } from 'projects/shared-library/src/lib/theme';
 
 @Component({
-  selector: 'boiler-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
