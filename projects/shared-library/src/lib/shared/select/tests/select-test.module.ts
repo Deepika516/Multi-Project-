@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ThemeModule } from '@boiler/theme/theme.module';
 
 import { SelectModule } from '../select.module';
 import { SelectTestComponent } from './select-test.component';
+import { ThemeModule } from '@main-project/theme/theme.module';
 
 @NgModule({
   declarations: [SelectTestComponent],

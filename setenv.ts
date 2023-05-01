@@ -1,15 +1,16 @@
-const {writeFile} = require('fs');
-const {argv} = require('yargs');
+const { writeFile } = require('fs');
+const { argv } = require('yargs');
 // read environment variables from .env file
 require('dotenv').config();
 const getBoilerPlateEnvContent = require('./project-envs/angular-boilerplate.env');
 // read the command line arguments passed with yargs
-const environment = argv.environment;
-const project = argv.project;
+console.log(argv);
+const environment = argv.environment ?? '';
+const project = argv.project ?? 'angular-boilerplate';
 const isProduction = environment === ('prod' || 'stage' || 'qa');
 
 console.log('PROJECT :: ', project);
-console.log('PATH :: ', environment);
+console.log('ENVIRONMENT :: ', environment);
 console.log('IsProd::', isProduction);
 
 if (!['angular-boilerplate', 'first-app'].includes(project)) {
