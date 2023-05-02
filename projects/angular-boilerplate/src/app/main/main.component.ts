@@ -1,12 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { takeUntil } from 'rxjs';
 import { AuthService, LoggedInUserDM } from '@main-project/core/auth';
 import { RouteComponentBaseDirective } from '@main-project/core/route-component-base';
 import { IconPacksManagerService } from '@main-project/theme/services';
-import { APP_CONFIG } from '@main-project/app-config';
 
 @Component({
   selector: 'boiler-main',
@@ -25,9 +24,8 @@ export class MainComponent
     private readonly authService: AuthService,
     private readonly menuService: NbMenuService,
     private readonly iconMgr: IconPacksManagerService,
-    @Inject(APP_CONFIG) override readonly appConfig: any
   ) {
-    super(route, location, appConfig);
+    super(route, location);
     this.iconMgr.registerSvgs();
   }
 

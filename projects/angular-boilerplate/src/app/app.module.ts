@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { APP_CONFIG } from '@main-project/app-config';
-import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { EnvResolverService } from '@main-project/core/services';
 import { IconPacksManagerService } from '@main-project/theme/services';
@@ -30,7 +28,6 @@ import { ApiService } from '@main-project/core/api';
     StoreModule,
   ],
   providers: [
-    { provide: APP_CONFIG, useValue: environment },
     EnvResolverService,
     TranslationService,
     TranslateService,

@@ -2,12 +2,12 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { ComponentBaseDirective } from './component-base';
+import { environment } from '@main-project/boiler/env/environment';
 
 export class RouteComponentBaseDirective extends ComponentBaseDirective {
   constructor(
     protected readonly route: ActivatedRoute,
     protected readonly location: Location,
-    protected readonly appConfig: any
   ) {
     super();
   }
@@ -43,6 +43,6 @@ export class RouteComponentBaseDirective extends ComponentBaseDirective {
   }
 
   navigateHome(): void {
-    this.location.go(this.appConfig.homePath);
+    this.location.go(environment.homePath);
   }
 }

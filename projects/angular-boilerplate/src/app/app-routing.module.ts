@@ -17,7 +17,7 @@ const routes: Routes = [
       import('projects/shared-library/src/lib/auth/auth.module').then(
         (m) => m.AuthModule
       ),
-    // canActivate: [LoggedInGuard],
+    canActivate: [LoggedInGuard],
   },
   {
     path: 'main',
@@ -25,7 +25,7 @@ const routes: Routes = [
       env: EnvResolverService,
     },
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '',
