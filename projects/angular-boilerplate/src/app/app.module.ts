@@ -9,15 +9,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { EnvResolverService } from '@main-project/core/services';
 import { IconPacksManagerService } from '@main-project/theme/services';
 import { TranslateService, TranslateStore } from '@ngx-translate/core';
-import { LocalizationModule, TranslationService } from '@main-project/core/localization';
-import { SystemStoreFacadeService } from '@main-project/core/store';
-import { InMemoryStorageService } from 'ngx-webstorage-service';
+import {
+  LocalizationModule,
+  TranslationService,
+} from '@main-project/core/localization';
+import {
+  StoreModule,
+  SystemStoreFacadeService,
+} from '@main-project/core/store';
 import { EnvAdapterService } from '@main-project/core/store/adapters';
 import { ApiService } from '@main-project/core/api';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, LocalizationModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    LocalizationModule,
+    StoreModule,
+  ],
   providers: [
     { provide: APP_CONFIG, useValue: environment },
     EnvResolverService,
@@ -26,9 +37,8 @@ import { ApiService } from '@main-project/core/api';
     IconPacksManagerService,
     TranslateStore,
     SystemStoreFacadeService,
-    InMemoryStorageService,
     EnvAdapterService,
-    ApiService
+    ApiService,
   ],
   bootstrap: [AppComponent],
 })
