@@ -10,12 +10,11 @@ import {
   LocalizationModule,
   TranslationService,
 } from '@main-project/core/localization';
-import {
-  StoreModule,
-  SystemStoreFacadeService,
-} from '@main-project/core/store';
+import { SystemStoreFacadeService } from '@main-project/core/store';
+import { InMemoryStorageService } from 'ngx-webstorage-service';
 import { EnvAdapterService } from '@main-project/core/store/adapters';
 import { ApiService } from '@main-project/core/api';
+import { SharedModule } from '@main-project/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +23,7 @@ import { ApiService } from '@main-project/core/api';
     AppRoutingModule,
     HttpClientModule,
     LocalizationModule,
-    StoreModule,
+    SharedModule,
   ],
   providers: [
     TranslationService,

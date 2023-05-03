@@ -9,14 +9,14 @@ import { AuthModule } from '../../auth/auth.module';
 import { ApiModule } from './api/api.module';
 import { CoreAuthModule } from './auth';
 import { EnsureModuleLoadedOnce } from './ensure-module-loaded-once';
-import { HttpInterceptorProviders } from './interceptors';
+
 import { LocalizationModule } from './localization/localization.module';
 import { StoreModule } from './store';
 import { ToasterModule } from './toaster/toaster.module';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 @NgModule({
-  providers: [HttpInterceptorProviders],
+  providers: [],
   imports: [
     CommonModule,
     NgxPermissionsModule.forRoot(),
