@@ -10,14 +10,14 @@ import { EnvResolverService } from 'projects/shared-library/src/lib/shared/core/
 const routes: Routes = [
   {
     path: 'auth',
-    resolve: {
-      env: EnvResolverService,
-    },
+    // resolve: {
+    //   env: EnvResolverService,
+    // },
     loadChildren: () =>
       import('projects/shared-library/src/lib/auth/auth.module').then(
         (m) => m.AuthModule
       ),
-    canActivate: [LoggedInGuard],
+    // canActivate: [LoggedInGuard],
   },
   {
     path: 'main',
@@ -25,7 +25,7 @@ const routes: Routes = [
       env: EnvResolverService,
     },
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: '',

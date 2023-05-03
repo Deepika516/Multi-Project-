@@ -12,7 +12,7 @@
       },
       "root": "projects/angular-boilerplate",
       "sourceRoot": "projects/angular-boilerplate/src",
-      "prefix": "main-project",
+      "prefix": "arc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -44,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -76,8 +76,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -91,8 +91,8 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {	
-            "browserTarget": "angular-boilerplate:build"	
+          "options": {
+            "browserTarget": "angular-boilerplate:build"
           },
           "configurations": {
             "production": {
@@ -130,94 +130,6 @@
         }
       }
     },
-    "first-app": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/first-app",
-      "sourceRoot": "projects/first-app/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/first-app",
-            "index": "projects/first-app/src/index.html",
-            "main": "projects/first-app/src/main.ts",
-            "polyfills": ["zone.js"],
-            "tsConfig": "projects/first-app/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/first-app/src/favicon.ico",
-              "projects/first-app/src/assets"
-            ],
-            "styles": ["projects/first-app/src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "first-app:build:production"
-            },
-            "development": {
-              "browserTarget": "first-app:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "first-app:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "projects/first-app/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/first-app/src/favicon.ico",
-              "projects/first-app/src/assets"
-            ],
-            "styles": ["projects/first-app/src/styles.scss"],
-            "scripts": []
-          }
-        }
-      }
-    },
     "shared-library": {
       "projectType": "library",
       "root": "projects/shared-library",
@@ -249,5 +161,8 @@
       }
     }
   },
-  "defaultProject": "angular-boilerplate"
+  "defaultProject": "angular-boilerplate",
+  "cli": {
+    "analytics": "dcf534a6-f2c3-4c9c-99f0-3de66c9162da"
+  }
 }
