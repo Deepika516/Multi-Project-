@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { ComponentBaseDirective } from './component-base';
-import { environment } from '@main-project/boiler/env/environment';
 
 export class RouteComponentBaseDirective extends ComponentBaseDirective {
   constructor(
@@ -42,7 +41,7 @@ export class RouteComponentBaseDirective extends ComponentBaseDirective {
     this.location.back();
   }
 
-  navigateHome(): void {
-    this.location.go(environment.homePath);
+  navigateHome(homePath): void {
+    this.location.go(homePath);
   }
 }

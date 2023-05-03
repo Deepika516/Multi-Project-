@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EnvResolverService } from '@main-project/core/services';
 import { IconPacksManagerService } from '@main-project/theme/services';
 import { TranslateService, TranslateStore } from '@ngx-translate/core';
 import {
@@ -28,7 +27,6 @@ import { ApiService } from '@main-project/core/api';
     StoreModule,
   ],
   providers: [
-    EnvResolverService,
     TranslationService,
     TranslateService,
     IconPacksManagerService,

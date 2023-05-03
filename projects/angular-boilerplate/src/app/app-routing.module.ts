@@ -5,14 +5,10 @@ import {
   AuthGuard,
   LoggedInGuard,
 } from 'projects/shared-library/src/lib/shared/core/auth';
-import { EnvResolverService } from 'projects/shared-library/src/lib/shared/core/services';
 
 const routes: Routes = [
   {
     path: 'auth',
-    resolve: {
-      env: EnvResolverService,
-    },
     loadChildren: () =>
       import('projects/shared-library/src/lib/auth/auth.module').then(
         (m) => m.AuthModule
@@ -21,9 +17,6 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    resolve: {
-      env: EnvResolverService,
-    },
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
     canActivate: [AuthGuard],
   },
