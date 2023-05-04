@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CoreModule } from './core';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     ReactiveFormsModule,
+    CoreModule,
   ],
   exports: [ReactiveFormsModule],
 })
