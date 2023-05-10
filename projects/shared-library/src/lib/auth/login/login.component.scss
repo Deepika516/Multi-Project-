@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "../../theme/styles/variables.scss" as *;
+@use "projects/shared-library/src/lib/theme/styles/variables" as *;
 
 :host {
   .logo {

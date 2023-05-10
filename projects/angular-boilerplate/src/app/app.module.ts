@@ -17,6 +17,8 @@ import { ApiService } from '@main-project/core/api';
 import { CoreModule } from '@main-project/core/core.module';
 import { APP_CONFIG } from '@main-project/app-config';
 import { environment } from '../environments/environment';
+import { ThemeModule } from '@main-project/theme/theme.module';
+import { NbLayoutModule, NbThemeModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +28,9 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     LocalizationModule,
     CoreModule,
+    ThemeModule,
+    NbThemeModule.forRoot(),
+    NbLayoutModule,
   ],
   providers: [
     TranslationService,
