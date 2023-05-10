@@ -12,9 +12,9 @@ import { NbLayoutModule, NbThemeModule } from '@nebular/theme';
   imports: [
     CommonModule,
     MainRoutingModule,
-    ThemeModule,
     NbLayoutModule,
     NbThemeModule.forRoot(),
+    ThemeModule,
   ],
 })
 export class MainModule {}

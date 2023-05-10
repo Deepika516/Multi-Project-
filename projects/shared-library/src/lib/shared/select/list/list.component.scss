@@ -1,5 +1,6 @@
 @use "sass:map";
-@import "../../../theme/styles/variables";
+// @import "../../../theme/styles/variables";
+@use  "projects/shared-library/src/lib/theme/styles/_variables.scss" as *;
 
 .select-panel {
   font-family: $main-font-family;

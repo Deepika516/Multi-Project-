@@ -1,4 +1,5 @@
-@use "../../../../theme/styles/variables" as *;
+// @use "../../../../theme/styles/variables" as *;
+@use  "projects/shared-library/src/lib/theme/styles/_variables.scss" as *;
 @use "sass:map";
 .column-container {
   .kebab-container {

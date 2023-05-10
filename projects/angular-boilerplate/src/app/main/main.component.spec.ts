@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CoreModule } from '../core';
-import { ThemeModule } from '../theme';
+import { CoreModule } from '@main-project/core';
+import { ThemeModule } from '@main-project/theme';
 
 import { MainComponent } from './main.component';
 import { MainModule } from './main.module';
