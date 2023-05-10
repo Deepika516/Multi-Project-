@@ -14,7 +14,9 @@ import { SystemStoreFacadeService } from '@main-project/core/store';
 import { InMemoryStorageService } from 'ngx-webstorage-service';
 import { EnvAdapterService } from '@main-project/core/store/adapters';
 import { ApiService } from '@main-project/core/api';
-import { SharedModule } from '@main-project/shared/shared.module';
+import { CoreModule } from '@main-project/core/core.module';
+import { APP_CONFIG } from '@main-project/app-config';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +25,7 @@ import { SharedModule } from '@main-project/shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     LocalizationModule,
-    SharedModule,
+    CoreModule,
   ],
   providers: [
     TranslationService,
@@ -33,6 +35,11 @@ import { SharedModule } from '@main-project/shared/shared.module';
     SystemStoreFacadeService,
     EnvAdapterService,
     ApiService,
+    {
+      provide: APP_CONFIG,
+      useValue: environment,
+    },
+    // other providers...
   ],
   bootstrap: [AppComponent],
 })

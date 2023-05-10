@@ -14,6 +14,6 @@ import { CoreModule } from './core';
     ReactiveFormsModule,
     CoreModule,
   ],
-  exports: [ReactiveFormsModule],
+  exports: [ReactiveFormsModule, CoreModule],
 })
 export class SharedModule {}

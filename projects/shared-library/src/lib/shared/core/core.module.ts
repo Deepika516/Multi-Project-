@@ -14,8 +14,10 @@ import { LocalizationModule } from './localization/localization.module';
 import { StoreModule } from './store';
 import { ToasterModule } from './toaster/toaster.module';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { ComponentBaseDirective } from './component-base';
 
 @NgModule({
+  declarations: [ComponentBaseDirective],
   providers: [],
   imports: [
     CommonModule,
@@ -33,7 +35,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     ToasterModule,
     CoreAuthModule,
   ],
-  exports: [StoreModule, AuthModule, ApiModule],
+  exports: [StoreModule, AuthModule, ApiModule, ComponentBaseDirective],
 })
 export class CoreModule extends EnsureModuleLoadedOnce {
   // Ensure that CoreModule is only loaded into AppModule

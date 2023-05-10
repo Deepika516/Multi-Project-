@@ -18,7 +18,7 @@ export class HomeComponent
     override readonly route: ActivatedRoute,
     override readonly location: Location,
     private readonly router: Router,
-    private readonly authService: AuthService,
+    private readonly authService: AuthService
   ) {
     super(route, location);
   }
@@ -27,13 +27,13 @@ export class HomeComponent
   greeting = '';
 
   ngOnInit(): void {
-    this.authService
-      .currentUser()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe((usr) => {
-        this.loggedInUserDM = usr;
-        this.greeting = this.getGreetingText();
-      });
+    // this.authService
+    //   .currentUser()
+    //   .pipe(takeUntil(this._destroy$))
+    //   .subscribe((usr) => {
+    //     this.loggedInUserDM = usr;
+    //     this.greeting = this.getGreetingText();
+    //   });
   }
 
   getGreetingText() {

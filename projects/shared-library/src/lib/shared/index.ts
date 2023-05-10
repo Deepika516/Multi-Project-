@@ -1,1 +1,2 @@
-export * from './components/warning-dialog/warning-dialog.component';
+export * from './core';
+export * from './core/route-component-base';

@@ -1,7 +1,9 @@
 import { Directive, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
-@Directive()
+@Directive({
+  selector: 'app-dir',
+})
 export class ComponentBaseDirective implements OnDestroy {
   protected _destroy$: Subject<void> = new Subject();
 

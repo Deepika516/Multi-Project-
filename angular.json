@@ -28,7 +28,7 @@
               {
                 "glob": "**/*",
                 "input": "projects/shared-library/src/lib/assets/",
-                "output": "projects/shared-library/src/lib/assets/"
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -124,7 +124,10 @@
                 "output": "projects/shared-library/src/lib/assets/"
               }
             ],
-            "styles": ["projects/angular-boilerplate/src/styles.scss"],
+            "styles": [
+              "projects/angular-boilerplate/src/styles.scss",
+              "projects/shared-library/src/lib/theme/styles/index.scss"
+            ],
             "scripts": []
           }
         }

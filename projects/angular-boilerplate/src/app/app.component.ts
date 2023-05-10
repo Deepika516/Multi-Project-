@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentBaseDirective } from 'projects/shared-library/src/lib/shared/core';
-import { TranslationService } from 'projects/shared-library/src/lib/shared/core';
-import { IconPacksManagerService } from 'projects/shared-library/src/lib/theme';
+import {
+  ComponentBaseDirective,
+  TranslationService,
+} from '@main-project/core/index';
+import { IconPacksManagerService } from '@main-project/theme/services';
 
 @Component({
   selector: 'app-root',

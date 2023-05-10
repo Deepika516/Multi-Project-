@@ -23,7 +23,7 @@ export class MainComponent
     private readonly sidebarService: NbSidebarService,
     private readonly authService: AuthService,
     private readonly menuService: NbMenuService,
-    private readonly iconMgr: IconPacksManagerService,
+    private readonly iconMgr: IconPacksManagerService
   ) {
     super(route, location);
     this.iconMgr.registerSvgs();
@@ -47,19 +47,19 @@ export class MainComponent
   }
 
   ngOnInit(): void {
-    this.authService
-      .currentUser()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe((usr) => {
-        this.loggedInUserDM = usr;
-      });
-    this.menuService
-      .onItemClick()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe((menu) => {
-        if (menu.tag === 'userMenu' && menu.item.data === 'logout') {
-          this.authService.logout().pipe(takeUntil(this._destroy$)).subscribe();
-        }
-      });
+    // this.authService
+    //   .currentUser()
+    //   .pipe(takeUntil(this._destroy$))
+    //   .subscribe((usr) => {
+    //     this.loggedInUserDM = usr;
+    //   });
+    // this.menuService
+    //   .onItemClick()
+    //   .pipe(takeUntil(this._destroy$))
+    //   .subscribe((menu) => {
+    //     if (menu.tag === 'userMenu' && menu.item.data === 'logout') {
+    //       this.authService.logout().pipe(takeUntil(this._destroy$)).subscribe();
+    //     }
+    //   });
   }
 }

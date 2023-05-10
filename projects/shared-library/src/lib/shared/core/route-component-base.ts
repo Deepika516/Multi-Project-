@@ -6,7 +6,7 @@ import { ComponentBaseDirective } from './component-base';
 export class RouteComponentBaseDirective extends ComponentBaseDirective {
   constructor(
     protected readonly route: ActivatedRoute,
-    protected readonly location: Location,
+    protected readonly location: Location
   ) {
     super();
   }
