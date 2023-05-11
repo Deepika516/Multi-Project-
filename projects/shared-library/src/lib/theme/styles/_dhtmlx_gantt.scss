@@ -164,7 +164,7 @@
       rgba(165, 214, 243, 0.451),
       rgba(165, 215, 243, 0.45)
     ),
-    url('assets/images/Rectangle.jpg') !important;
+    url('../../assets/images/Rectangle.jpg') !important;
   text-align: left;
   padding-left: 1rem;
   color: map.get($color, actual-resource-gantt-text);
